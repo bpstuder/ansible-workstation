@@ -7,5 +7,12 @@
       name:
       - htop
       - mc
-      - tmux
+      - git
+      - curl
+      - zsh
+      - whois
+      - uuid
+      - jq
+      - flameshot
+      - filezilla
       state: present
