@@ -1,4 +1,6 @@
-- hosts: localhost
+- name: "Workstation customization playbook"
+  hosts: localhost
+  connection: local
   become: true
   pre_tasks:
     - name: Update repositories
@@ -11,3 +13,6 @@
     - include: tasks/packages.yml
     - include: tasks/cron.yml
     - include: tasks/gnome.yml
+
+  vars_files:
+    - vars/main.yml
