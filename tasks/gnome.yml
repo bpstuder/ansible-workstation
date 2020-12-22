@@ -1,0 +1,17 @@
+- name: Install python-psutil package
+  apt: 
+    name: python-psutil
+
+- name: Copy wallpaper file
+  copy: 
+    src: files/wallpaper.jpg
+    dest: /home/bpstuder/.wallpaper.jpg
+    owner: bpstuder
+    group: bpstuder
+    mode: 600
+
+- name: Set GNOME Wallpaper
+  become_user: bpstuder
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///home/bpstuder/.wallpaper.jpg'"
