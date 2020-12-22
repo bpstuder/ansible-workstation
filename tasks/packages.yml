@@ -1,0 +1,14 @@
+- name: Install packages
+  apt:
+    name:
+    - htop
+    - mc
+    - git
+    - curl
+    - zsh
+    - whois
+    - uuid
+    - jq
+    - flameshot
+    - filezilla
+    state: present
