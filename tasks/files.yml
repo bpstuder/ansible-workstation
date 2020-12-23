@@ -1,0 +1,14 @@
+- name: copy unattend file
+  copy: 
+    src: files/criteo_unattend.seed
+    dest: /opt/criteo/
+    owner: root
+    group: root
+    mode: 0700
+- name: copy setup file
+  copy: 
+    src: files/ubiquity.desktop
+    dest: /usr/share/applications
+    owner: root
+    group: root
+    mode: 0700
