@@ -39,6 +39,7 @@
     - jq
     - flameshot
     - filezilla
+    - dconf-cli
     - google-chrome-stable
     - slack-desktop
     - criteo-setup
