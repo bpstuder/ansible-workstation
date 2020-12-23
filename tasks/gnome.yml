@@ -16,21 +16,25 @@
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///home/{{ username }}/.wallpaper.jpg'"
   tags: always
+  ignore_errors: yes
 
 - name: Set Flameshot key for printscreen
   become_user: "{{ username }}"
   dconf:
     key: "/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding"
     value: "['Print']"
+  ignore_errors: yes  
 
 - name: Set Flameshot command for printscreen
   become_user: "{{ username }}"
   dconf:
     key: "/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command"
     value: "'flameshot gui'"
+  ignore_errors: yes
 
 - name: Set Flameshot name for printscreen
   become_user: "{{ username }}"
   dconf:
     key: "/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name"
     value: "'Flameshot'"
+  ignore_errors: yes
