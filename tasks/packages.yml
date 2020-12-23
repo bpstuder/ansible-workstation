@@ -15,21 +15,19 @@
     repo: deb [arch=amd64] https://repo.criteois.com/ubuntu/ focal main
     state: present
     filename: criteo
-    update_cache: yes
 - name: Add Slack repository
   apt_repository:
     repo: deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
     state: present
     filename: slack
-    update_cache: yes
 - name: Add Chrome repository
   apt_repository:
     repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
     state: present
     filename: google-chrome
-    update_cache: yes
 - name: Install packages
   apt:
+    update_cache: yes
     name:
     - htop
     - mc
