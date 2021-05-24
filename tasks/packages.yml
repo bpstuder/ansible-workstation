@@ -1,6 +1,6 @@
 - name: Add Criteo APT key
   apt_key:
-    url: https://repo.criteois.com/criteo.asc
+    url: https://repo.criteois.com/criteo.pub
     state: present
 - name: Add Slack APT key
   apt_key:
@@ -42,6 +42,5 @@
     - dconf-cli
     - google-chrome-stable
     - slack-desktop
-    - criteo-setup
-    - criteo-anyconnect
+    - criteo-baseline
     state: present
