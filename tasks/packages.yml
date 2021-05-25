@@ -33,5 +33,4 @@
     - dconf-cli
     - google-chrome-stable
     - slack-desktop
-    - criteo-baseline
     state: present
