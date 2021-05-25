@@ -1,7 +1,3 @@
-- name: Add Criteo APT key
-  apt_key:
-    url: https://repo.criteois.com/criteo.pub
-    state: present
 - name: Add Slack APT key
   apt_key:
     url: https://packagecloud.io/slacktechnologies/slack/gpgkey
@@ -10,11 +6,6 @@
   apt_key:
     url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     state: present
-- name: Add Criteo repository
-  apt_repository:
-    repo: deb [arch=amd64] https://repo.criteois.com/ubuntu/ focal main
-    state: present
-    filename: criteo
 - name: Add Slack repository
   apt_repository:
     repo: deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
