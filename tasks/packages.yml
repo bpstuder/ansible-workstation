@@ -28,6 +28,7 @@
     - whois
     - uuid
     - jq
+    - tlp
     - flameshot
     - filezilla
     - dconf-cli
