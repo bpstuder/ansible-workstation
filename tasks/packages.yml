@@ -32,6 +32,7 @@
     - flameshot
     - filezilla
     - dconf-cli
+    - remmina
     - google-chrome-stable
     - slack-desktop
     state: present
