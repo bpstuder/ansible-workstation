@@ -2,12 +2,7 @@
   hosts: localhost
   connection: local
   become: true
-  
-- name: get the username running the deploy
-  become: false
-  local_action: command whoami
-  register: username
-  
+
   tasks:
     #- include: tasks/users.yml
     - include: tasks/packages.yml
