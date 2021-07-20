@@ -6,34 +6,34 @@
   copy: 
     src: files/wallpaper.jpg
     dest: "/home/{{ username }}/.wallpaper.jpg"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: "{{ username.stdout }}"
+    group: "{{ username.stdout }}"
     mode: '0600'
 
 - name: Set GNOME Wallpaper
-  become_user: "{{ username }}"
+  become_user: "{{ username.stdout }}"
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
-    value: "'file:///home/{{ username }}/.wallpaper.jpg'"
+    value: "'file:///home/{{ username.stdout }}/.wallpaper.jpg'"
   tags: always
   ignore_errors: yes
 
 - name: Set Flameshot key for printscreen
-  become_user: "{{ username }}"
+  become_user: "{{ username.stdout }}"
   dconf:
     key: "/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding"
     value: "['Print']"
   ignore_errors: yes  
 
 - name: Set Flameshot command for printscreen
-  become_user: "{{ username }}"
+  become_user: "{{ username.stdout }}"
   dconf:
     key: "/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command"
     value: "'flameshot gui'"
   ignore_errors: yes
 
 - name: Set Flameshot name for printscreen
-  become_user: "{{ username }}"
+  become_user: "{{ username.stdout }}"
   dconf:
     key: "/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name"
     value: "'Flameshot'"

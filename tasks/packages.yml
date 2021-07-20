@@ -1,8 +1,10 @@
 - name: Add Slack APT key
+  become: true
   apt_key:
     url: https://packagecloud.io/slacktechnologies/slack/gpgkey
     state: present
 - name: Add Chrome APT key
+  become: true
   apt_key:
     url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     state: present
