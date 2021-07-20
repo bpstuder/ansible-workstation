@@ -1,11 +1,15 @@
-- name: Create ansible user
-  user: 
-    name: ansible
-    uid: 900
-- name: copy sudoers_ansible
-  copy: 
-    src: files/sudoers_ansible
-    dest: /etc/sudoers.d/ansible
-    owner: root
-    group: root
-    mode: 0440
+# - name: Create ansible user
+#   user: 
+#     name: ansible
+#     uid: 900
+# - name: copy sudoers_ansible
+#   copy: 
+#     src: files/sudoers_ansible
+#     dest: /etc/sudoers.d/ansible
+#     owner: root
+#     group: root
+#     mode: 0440
+- name: get the username running the deploy
+  become: false
+  local_action: command whoami
+  register: username
