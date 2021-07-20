@@ -6,7 +6,7 @@
   tasks:
     #- include: tasks/users.yml
     - include: tasks/packages.yml
-    - include: tasks/cron.yml
+    #- include: tasks/cron.yml
     - include: tasks/gnome.yml
 
   vars_files:
