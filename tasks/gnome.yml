@@ -5,7 +5,7 @@
 - name: Copy wallpaper file
   copy: 
     src: files/wallpaper.jpg
-    dest: "/home/{{ username }}/.wallpaper.jpg"
+    dest: "/home/{{ username.stdout }}/.wallpaper.jpg"
     owner: "{{ username.stdout }}"
     group: "{{ username.stdout }}"
     mode: '0600'
