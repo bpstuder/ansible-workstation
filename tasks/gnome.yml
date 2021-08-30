@@ -1,7 +1,3 @@
-- name: Install python-psutil package
-  apt: 
-    name: python-psutil
-
 - name: Copy wallpaper file
   copy: 
     src: files/wallpaper.jpg
