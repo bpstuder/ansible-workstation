@@ -37,4 +37,5 @@
     - remmina
     - google-chrome-stable
     - slack-desktop
+    #- python-psutil
     state: present
