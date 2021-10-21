@@ -38,5 +38,5 @@
     - google-chrome-stable
     - slack-desktop
     - python3-pip
-    #- python-psutil
+    - python3-psutil
     state: present
