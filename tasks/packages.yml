@@ -52,4 +52,6 @@
     - kazam
     - criteo-baseline
     - cifs-utils
+    - fonts-firacode
+    - github-desktop
     state: present
