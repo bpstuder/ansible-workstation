@@ -22,12 +22,13 @@
     - fonts-firacode
     state: present
 - name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
+  flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
 - name: Install Brave Browser
-  community.general.flatpak:
+  flatpak:
     name: com.brave.Browser
     state: present
+    method: user
