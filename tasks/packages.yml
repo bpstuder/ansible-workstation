@@ -31,4 +31,3 @@
   community.general.flatpak:
     name: com.brave.Browser
     state: present
-    remote: flathub
