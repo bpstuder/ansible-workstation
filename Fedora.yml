@@ -30,7 +30,6 @@
     key: https://www.virtualbox.org/download/oracle_vbox.asc
     state: "present"
   become: true
-  ignore_errors: true
   register: vbox_result
 - name: "[VirtualBox] Add repository into repo.d list"
   ansible.builtin.yum_repository:
