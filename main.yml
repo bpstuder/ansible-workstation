@@ -113,12 +113,6 @@
           - firefox
         state: absent
 
-    - name: "Packages Cleanup"
-      become: true
-      become_method: sudo
-      ansible.builtin.package:
-        autoremove: true
-
     - name: "Copy wallpaper file"
       ansible.builtin.copy:
         src: files/legends-of-runeterra-poro-heart-of-the-fluft.jpg

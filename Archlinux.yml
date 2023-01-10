@@ -20,10 +20,28 @@
       - remmina
       - python-pip
       - python-psutil
-      - kazam
       - cifs-utils
-      - fonts-firacode
+      - ttf-firacode-nerd
       - ansible-lint
-      - pip
     state: present
   become: true
+
+- name: Install Google Chrome using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: google-chrome
+
+- name: Install Github-Desktop using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: github-desktop
+
+- name: Install Visual Studio Code using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: visual-studio-code-bin
+
+- name: Install VirtualBox using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: virtualbox
