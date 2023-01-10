@@ -34,7 +34,7 @@
 - name: Install Github-Desktop using yay
   kewlfft.aur.aur:
     use: yay
-    name: github-desktop
+    name: github-desktop-bin
 
 - name: Install Visual Studio Code using yay
   kewlfft.aur.aur:
