@@ -31,37 +31,6 @@
       tags: os-tasks
       ignore_errors: true
 
-    - name: Update pre-installed packages
-      become: true
-      become_method: sudo
-      ansible.builtin.package:
-        name: '*'
-        state: latest
-      when: ansible_facts['os_family'] == "RedHat"
-
-    - name: "Install packages"
-      ansible.builtin.package:
-        name:
-          - htop
-          - mc
-          - git
-          - curl
-          - zsh
-          - whois
-          - jq
-          - tlp
-          - flameshot
-          - filezilla
-          - remmina
-          - python3-pip
-          - python3-psutil
-          - kazam
-          - cifs-utils
-          - fonts-firacode
-          - ansible-lint
-          - pip
-        state: present
-      become: true
     # - name: "Add PSUtil"
     #   ansible.builtin.pip:
     #     name: psutil
@@ -76,13 +45,6 @@
     # - name: "Install Golang"
     #   ansible.builtin.package:
     #     name: "golang"
-    #     state: "present"
-    #   # when: ansible_facts['os_family'] == "RedHat"
-    #   become: true
-
-    # - name: "Install Remmina"
-    #   ansible.builtin.package:
-    #     name: "remmina"
     #     state: "present"
     #   # when: ansible_facts['os_family'] == "RedHat"
     #   become: true

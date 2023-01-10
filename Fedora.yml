@@ -4,6 +4,37 @@
     line: max_parallel_downloads=10
   become: true
 
+- name: Update pre-installed packages
+  become: true
+  become_method: sudo
+  ansible.builtin.package:
+    name: '*'
+    state: latest
+
+- name: "Install packages"
+  ansible.builtin.package:
+    name:
+      - htop
+      - mc
+      - git
+      - curl
+      - zsh
+      - whois
+      - jq
+      - tlp
+      - flameshot
+      - filezilla
+      - remmina
+      - python3-pip
+      - python3-psutil
+      - kazam
+      - cifs-utils
+      - fonts-firacode
+      - ansible-lint
+      - pip
+    state: present
+  become: true
+
 - name: "[Chrome] Add Yum signing key"
   ansible.builtin.rpm_key:
     key: https://dl.google.com/linux/linux_signing_key.pub

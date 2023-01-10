@@ -1,0 +1,28 @@
+- name: Run the equivalent of "pacman -Syu" as a separate step
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+
+- name: "Install packages"
+  ansible.builtin.package:
+    name:
+      - htop
+      - mc
+      - git
+      - curl
+      - zsh
+      - whois
+      - jq
+      - tlp
+      - flameshot
+      - filezilla
+      - remmina
+      - python-pip
+      - python-psutil
+      - kazam
+      - cifs-utils
+      - fonts-firacode
+      - ansible-lint
+      - pip
+    state: present
+  become: true
