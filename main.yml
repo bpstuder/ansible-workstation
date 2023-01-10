@@ -1,0 +1,167 @@
+---
+- name: "Workstation setup"
+  hosts: "localhost"
+  roles:
+    - role: gantsign.oh-my-zsh
+      users:
+        - username: "{{ ansible_user_id }}"
+          oh_my_zsh:
+            theme: amuse
+            plugins:
+              - git
+              - docker
+            update_mode: auto
+    - role: exploide.dnf-automatic
+      dnf_automatic_upgrade_type: default
+      dnf_automatic_apply_updates: true
+      dnf_automatic_download_updates: true
+      become: true
+      when: ansible_facts['os_family'] == "RedHat"
+  tasks:
+    - name: "Display the distribution"
+      ansible.builtin.debug:
+        msg: "Distribution : {{ ansible_facts['os_family'] }} - {{ ansible_distribution }} - {{ ansible_distribution_major_version }}"
+
+    - name: OS Specific tasks
+      ansible.builtin.include_tasks: 
+        file: "{{ item }}"
+      with_first_found:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+      tags: os-tasks
+
+    - name: Update pre-installed packages
+      become: true
+      become_method: sudo
+      ansible.builtin.package:
+        name: '*'
+        state: latest
+
+    - name: "Install packages"
+      ansible.builtin.package:
+        name:
+          - htop
+          - mc
+          - git
+          - curl
+          - zsh
+          - whois
+          - uuid
+          - jq
+          - tlp
+          - flameshot
+          - filezilla
+          - dconf-cli
+          - remmina
+          - python3-pip
+          - python3-psutil
+          - kazam
+          - cifs-utils
+          - fonts-firacode
+          - ansible-lint
+          - pip
+        state: present
+      become: true
+    # - name: "Add PSUtil"
+    #   ansible.builtin.pip:
+    #     name: psutil
+    #     state: present
+    # - name: "Install Gnome Software"
+    #   ansible.builtin.package:
+    #     name: "gnome-software"
+    #     state: "absent"
+    #   when: ansible_facts['os_family'] == "RedHat"
+    #   become: true
+
+    # - name: "Install Golang"
+    #   ansible.builtin.package:
+    #     name: "golang"
+    #     state: "present"
+    #   # when: ansible_facts['os_family'] == "RedHat"
+    #   become: true
+
+    # - name: "Install Remmina"
+    #   ansible.builtin.package:
+    #     name: "remmina"
+    #     state: "present"
+    #   # when: ansible_facts['os_family'] == "RedHat"
+    #   become: true
+
+    - name: "Install flatpak"
+      ansible.builtin.package:
+        name: "flatpak"
+        state: "present"
+        update_cache: true
+      become: true
+
+    - name: "Manage flathub Repository"
+      community.general.flatpak_remote:
+        name: "flathub"
+        state: "present"
+        flatpakrepo_url: "https://dl.flathub.org/repo/flathub.flatpakrepo"
+        method: "user"
+      # become: true
+    - name: "Install Zoom Flatpak"
+      community.general.flatpak:
+        name: "us.zoom.Zoom"
+        state: "present"
+        method: user
+      # become: true
+    - name: "Install Slack"
+      community.general.flatpak:
+        name: "com.slack.Slack"
+        state: present
+        method: user
+      # become: true
+    - name: "Install Discord"
+      community.general.flatpak:
+        name: "com.discordapp.Discord"
+        state: present
+        method: user
+      # become: true
+    - name: "Install XIVLauncher"
+      community.general.flatpak:
+        name: "dev.goats.xivlauncher"
+        state: present
+        method: user
+      # become: true
+    # - name: "Install Boxes"
+    #   community.general.flatpak:
+    #     name: "org.gnome.Boxes"
+    #     state: present
+    #     method: user
+    #   # become: true
+    - name: "Install Lutris"
+      community.general.flatpak:
+        name: "net.lutris.Lutris"
+        state: present
+        method: user
+
+    - name: "Unwanted KDE packages"
+      become: true
+      become_method: sudo
+      ansible.builtin.package:
+        name:
+          - akgregator
+          - kget
+          - kmail
+          - knode
+          - konqueror
+          - kontact
+          - firefox
+        state: absent
+
+    - name: "Packages Cleanup"
+      become: true
+      become_method: sudo
+      ansible.builtin.package:
+        autoremove: true
+
+    - name: "Copy wallpaper file"
+      ansible.builtin.copy:
+        src: files/legends-of-runeterra-poro-heart-of-the-fluft.jpg
+        dest: /home/{{ ansible_user_id }}/Pictures/legends-of-runeterra-poro-heart-of-the-fluft.jpg
+        owner: root
+        group: root
+        mode: 0777
+      become: true
