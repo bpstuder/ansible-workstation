@@ -16,7 +16,7 @@
       dnf_automatic_apply_updates: true
       dnf_automatic_download_updates: true
       become: true
-      when: ansible_facts['os_family'] == "RedHat"
+      when: ansible_distribution == "RedHat"
   tasks:
     - name: "Display the distribution"
       ansible.builtin.debug:
