@@ -44,3 +44,8 @@
   kewlfft.aur.aur:
     use: yay
     name: virtualbox
+    
+- name: Install Discord using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: discord
