@@ -27,11 +27,8 @@
       - remmina
       - python3-pip
       - python3-psutil
-      - kazam
       - cifs-utils
-      - fonts-firacode
       - ansible-lint
-      - pip
     state: present
   become: true
 
@@ -83,18 +80,18 @@
 
 - name: "[Github Desktop] Add Yum signing key"
   ansible.builtin.rpm_key:
-    key: https://packagecloud.io/shiftkey/desktop/gpgkey
+    key: https://mirror.mwt.me/ghd/gpgkey
     state: "present"
   become: true
 - name: "[Github Desktop] Add repository into repo.d list"
   ansible.builtin.yum_repository:
     name: "shiftkey"
     description: "github desktop repository"
-    baseurl: https://packagecloud.io/shiftkey/desktop/el/7/x86_64
+    baseurl: https://mirror.mwt.me/ghd/rpm
     enabled: true
     gpgcheck: false
     repo_gpgcheck: true
-    gpgkey: https://packagecloud.io/shiftkey/desktop/gpgkey
+    gpgkey: https://mirror.mwt.me/ghd/gpgkey
   become: true
 - name: "[Github Desktop] Install github-desktop"
   ansible.builtin.package:

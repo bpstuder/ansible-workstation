@@ -25,9 +25,15 @@ case $osName in
         ansible-galaxy install exploide.dnf-automatic
     ;;
 
-    "EndeavourOS"|"Manjaro"|"ArchLinux")
+    "EndeavourOS"*|"Manjaro"*|"ArchLinux"*)
         echo "Installing Aur role for Ansible"
         ansible-galaxy collection install kewlfft.aur
+    ;;
+
+    "Pop!_OS"*)
+        echo "Installing community.general collection"
+        ansible-galaxy collection install community.general
+        # exit 0
     ;;
 
     *)
