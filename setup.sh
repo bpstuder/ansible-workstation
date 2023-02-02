@@ -32,7 +32,8 @@ case $osName in
 
     "Pop!_OS"*)
         echo "Installing community.general collection"
-        ansible-galaxy collection install community.general
+        apt install -y -qq python3-apt
+        ansible-galaxy install community.general
         # exit 0
     ;;
 
