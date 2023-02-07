@@ -32,6 +32,12 @@
     state: present
   become: true
 
+- name: Enable the RPM Fusion repository
+  ansible.builtin.package:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+    state: present
+  become:  true
+
 - name: "[Chrome] Add Yum signing key"
   ansible.builtin.rpm_key:
     key: https://dl.google.com/linux/linux_signing_key.pub
