@@ -36,11 +36,13 @@
   ansible.builtin.rpm_key:
     state: present
     key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+  become: true
 
 - name: Importing RPM Fusion Non-Free key
   ansible.builtin.rpm_key:
     state: present
     key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+  become: true
 
 - name: Enable the RPM Fusion Free repository
   ansible.builtin.package:
