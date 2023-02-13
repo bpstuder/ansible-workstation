@@ -29,6 +29,7 @@
       - python3-psutil
       - cifs-utils
       - ansible-lint
+      - fira-code
     state: present
   become: true
 
