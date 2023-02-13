@@ -49,12 +49,14 @@
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
     state: present
   become:  true
+  ignore-errors: true
 
 - name: Enable the RPM Fusion Non Free repository
   ansible.builtin.package:
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
     state: present
   become:  true
+  ignore-errors: true
 
 #- name: "[Chrome] Add Yum signing key"
 #  ansible.builtin.rpm_key:
