@@ -32,32 +32,48 @@
     state: present
   become: true
 
-- name: Enable the RPM Fusion repository
+- name: Importing RPM Fusion Free key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+
+- name: Importing RPM Fusion Non-Free key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+
+- name: Enable the RPM Fusion Free repository
   ansible.builtin.package:
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
     state: present
   become:  true
 
-- name: "[Chrome] Add Yum signing key"
-  ansible.builtin.rpm_key:
-    key: https://dl.google.com/linux/linux_signing_key.pub
-    state: "present"
-  become: true
-- name: "[Chrome] Add repository into repo.d list"
-  ansible.builtin.yum_repository:
-    name: "google-chrome"
-    description: google-chrome repository
-    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
-    enabled: true
-    gpgcheck: true
-    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-  become: true
-- name: "[Chrome] Install google-chrome-stable"
+- name: Enable the RPM Fusion Non Free repository
   ansible.builtin.package:
-    name: "google-chrome-stable"
-    state: "present"
-    update_cache: true
-  become: true
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
+    state: present
+  become:  true
+
+#- name: "[Chrome] Add Yum signing key"
+#  ansible.builtin.rpm_key:
+#    key: https://dl.google.com/linux/linux_signing_key.pub
+#    state: "present"
+#  become: true
+#- name: "[Chrome] Add repository into repo.d list"
+#  ansible.builtin.yum_repository:
+#    name: "google-chrome"
+#    description: google-chrome repository
+#    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+#    enabled: true
+#    gpgcheck: true
+#    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+#  become: true
+#- name: "[Chrome] Install google-chrome-stable"
+#  ansible.builtin.package:
+#    name: "google-chrome-stable"
+#    state: "present"
+#    update_cache: true
+#  become: true
 
 - name: "[VirtualBox] Add Yum signing key"
   ansible.builtin.rpm_key:
@@ -105,7 +121,6 @@
     state: "present"
     update_cache: true
   become: true
-
 
 - name: "Add Visual Studio Code repository"
   ansible.builtin.yum_repository:
