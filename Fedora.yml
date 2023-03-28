@@ -80,30 +80,30 @@
 #    update_cache: true
 #  become: true
 
-- name: "[VirtualBox] Add Yum signing key"
-  ansible.builtin.rpm_key:
-    key: https://www.virtualbox.org/download/oracle_vbox.asc
-    state: "present"
-  become: true
-  register: vbox_result
-- name: "[VirtualBox] Add repository into repo.d list"
-  ansible.builtin.yum_repository:
-    name: "VirtualBox"
-    description: virtualbox repository
-    baseurl: https://download.virtualbox.org/virtualbox/rpm/fedora/36/x86_64/
-    enabled: true
-    gpgcheck: true
-    repo_gpgcheck: true
-    gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
-  become: true
-  when: vbox_result is succeeded
-- name: "[VirtualBox] Install virtualbox"
-  ansible.builtin.package:
-    name: "VirtualBox-7.0"
-    state: "present"
-    update_cache: true
-  become: true
-  when: vbox_result is succeeded
+# - name: "[VirtualBox] Add Yum signing key"
+#   ansible.builtin.rpm_key:
+#     key: https://www.virtualbox.org/download/oracle_vbox.asc
+#     state: "present"
+#   become: true
+#   register: vbox_result
+# - name: "[VirtualBox] Add repository into repo.d list"
+#   ansible.builtin.yum_repository:
+#     name: "VirtualBox"
+#     description: virtualbox repository
+#     baseurl: https://download.virtualbox.org/virtualbox/rpm/fedora/36/x86_64/
+#     enabled: true
+#     gpgcheck: true
+#     repo_gpgcheck: true
+#     gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
+#   become: true
+#   when: vbox_result is succeeded
+# - name: "[VirtualBox] Install virtualbox"
+#   ansible.builtin.package:
+#     name: "VirtualBox-7.0"
+#     state: "present"
+#     update_cache: true
+#   become: true
+#   when: vbox_result is succeeded
 
 - name: "[Github Desktop] Add Yum signing key"
   ansible.builtin.rpm_key:

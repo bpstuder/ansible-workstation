@@ -87,15 +87,14 @@
         state: present
         method: user
       # become: true
-    # - name: "Install Boxes"
-    #   community.general.flatpak:
-    #     name: "org.gnome.Boxes"
-    #     state: present
-    #     method: user
-    #   # become: true
     - name: "Install Lutris"
       community.general.flatpak:
         name: "net.lutris.Lutris"
+        state: present
+        method: user
+    - name: "Install Brave"
+      community.general.flatpak:
+        name: "com.brave.Browser"
         state: present
         method: user
 
