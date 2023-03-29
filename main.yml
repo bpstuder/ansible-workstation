@@ -21,6 +21,10 @@
     - name: "Display the distribution"
       ansible.builtin.debug:
         msg: "Distribution : {{ ansible_facts['os_family'] }} - {{ ansible_distribution }} - {{ ansible_distribution_major_version }}"
+    - name: "Display all variables/facts known for a host"
+      ansible.builtin.debug:
+        var: hostvars[localhost]
+        verbosity: 4
 
     - name: OS Specific tasks
       ansible.builtin.include_tasks:
@@ -111,10 +115,31 @@
           - kontact
         state: absent
 
-    - name: "Copy wallpaper file"
+    - name: GNOME Preferences - Nautilus - Clock Format
+      community.general.dconf:
+        key: "/org/gnome/desktop/interface/clock-format"
+        value: "'24h'"
+        state: present
+    - name: GNOME Preferences - Mouse - Enable touchpad Right click
+      community.general.dconf:
+        key: "/org/gnome/desktop/peripherals/touchpad/click-method"
+        value: "'areas'"
+        state: present
+    - name: GNOME Preferences - Mouse - Enable touchpad tap-to-click
+      community.general.dconf:
+        key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+        value: "true"
+        state: present
+    - name: "GNOME Preferences - Window Buttons"
+      community.general.dconf:
+        key: "/org/gnome/desktop/wm/preferences/button-layout"
+        value: "'appmenu:minimize,maximize,close'"
+        state: "present"
+
+    - name: "Copy wallpaper files"
       ansible.builtin.copy:
-        src: files/legends-of-runeterra-poro-heart-of-the-fluft.jpg
-        dest: /home/{{ ansible_user_id }}/Pictures/legends-of-runeterra-poro-heart-of-the-fluft.jpg
+        src: files/*
+        dest: /home/{{ ansible_user_id }}/Pictures/*
         owner: root
         group: root
         mode: 0777
