@@ -116,6 +116,11 @@
         name: "com.mattjakeman.ExtensionManager"
         state: present
         method: user
+    - name: "Install Dropbox"
+      community.general.flatpak:
+        name: "com.dropbox.Client"
+        state: present
+        method: user
 
     - name: "Unwanted KDE packages"
       become: true
