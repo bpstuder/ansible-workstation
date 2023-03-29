@@ -101,6 +101,21 @@
         name: "com.brave.Browser"
         state: present
         method: user
+    - name: "Install Postman"
+      community.general.flatpak:
+        name: "com.getpostman.Postman"
+        state: present
+        method: user
+    - name: "Install Skype"
+      community.general.flatpak:
+        name: "com.skype.Client"
+        state: present
+        method: user
+    - name: "Install Extension Manager"
+      community.general.flatpak:
+        name: "com.mattjakeman.ExtensionManager"
+        state: present
+        method: user
 
     - name: "Unwanted KDE packages"
       become: true
@@ -114,6 +129,17 @@
           - konqueror
           - kontact
         state: absent
+
+    - name: "Copy wallpaper files"
+      ansible.builtin.copy:
+        src: files/
+        dest: /home/{{ ansible_user_id }}/Pictures/
+        owner: root
+        group: root
+        mode: 0777
+      with_fileglob:
+        - files/*
+      become: true
 
     - name: GNOME Preferences - Nautilus - Clock Format
       community.general.dconf:
@@ -135,12 +161,48 @@
         key: "/org/gnome/desktop/wm/preferences/button-layout"
         value: "'appmenu:minimize,maximize,close'"
         state: "present"
-
-    - name: "Copy wallpaper files"
-      ansible.builtin.copy:
-        src: files/*
-        dest: /home/{{ ansible_user_id }}/Pictures/*
-        owner: root
-        group: root
-        mode: 0777
-      become: true
+    - name: Set GNOME wallpaper
+      community.general.dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///home/{{ ansible_user_id }}/Pictures/kugane.jpeg'"
+        state: "present"
+    - name: Set GNOME wallpaper (dark)
+      community.general.dconf:
+        key: "/org/gnome/desktop/background/picture-uri-dark"
+        value: "'file:///home/{{ ansible_user_id }}/Pictures/kugane.jpeg'"
+        state: "present"
+    - name: "GNOME Preferences - Desktop Icons"
+      community.general.dconf:
+        key: "/org/gnome/desktop/background/show-desktop-icons"
+        value: "true"
+        state: "present"
+    - name: "GNOME Preferences - Enable location services"
+      community.general.dconf:
+        key: "/org/gnome/system/location/enabled"
+        value: "true"
+        state: "present"
+    - name: "GNOME Preferences - Enable dark mode"
+      community.general.dconf:
+        key: "/org/gnome/desktop/interface/color-scheme"
+        value: "'prefer-dark'"
+        state: "present"
+    - name: "GNOME Preferences - Flameshot shortcut name"
+      community.general.dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+        value: "'flameshot'"
+        state: "present"
+    - name: "GNOME Preferences - Flameshot shortcut command"
+      community.general.dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+        value: "'flameshot gui'"
+        state: "present"
+    - name: "GNOME Preferences - Flameshot shortcut binding"
+      community.general.dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+        value: "'Print'"
+        state: "present"
+    - name: "GNOME Preferences - Disable default screenshot shortcut"
+      community.general.dconf:
+        key: "/org/gnome/shell/keybindings/show-screenshot-ui"
+        value: "@as []"
+        state: "present"
