@@ -54,7 +54,7 @@
 
 - name: Enable the RPM Fusion Non Free repository
   ansible.builtin.package:
-    name: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
+    name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
     state: present
   become:  true
   ignore_errors: true
@@ -105,27 +105,27 @@
 #   become: true
 #   when: vbox_result is succeeded
 
-- name: "[Github Desktop] Add Yum signing key"
-  ansible.builtin.rpm_key:
-    key: https://mirror.mwt.me/ghd/gpgkey
-    state: "present"
-  become: true
-- name: "[Github Desktop] Add repository into repo.d list"
-  ansible.builtin.yum_repository:
-    name: "shiftkey"
-    description: "github desktop repository"
-    baseurl: https://mirror.mwt.me/ghd/rpm
-    enabled: true
-    gpgcheck: false
-    repo_gpgcheck: true
-    gpgkey: https://mirror.mwt.me/ghd/gpgkey
-  become: true
-- name: "[Github Desktop] Install github-desktop"
-  ansible.builtin.package:
-    name: "github-desktop"
-    state: "present"
-    update_cache: true
-  become: true
+# - name: "[Github Desktop] Add Yum signing key"
+#   ansible.builtin.rpm_key:
+#     key: https://mirror.mwt.me/ghd/gpgkey
+#     state: "present"
+#   become: true
+# - name: "[Github Desktop] Add repository into repo.d list"
+#   ansible.builtin.yum_repository:
+#     name: "shiftkey"
+#     description: "github desktop repository"
+#     baseurl: https://mirror.mwt.me/ghd/rpm
+#     enabled: true
+#     gpgcheck: false
+#     repo_gpgcheck: true
+#     gpgkey: https://mirror.mwt.me/ghd/gpgkey
+#   become: true
+# - name: "[Github Desktop] Install github-desktop"
+#   ansible.builtin.package:
+#     name: "github-desktop"
+#     state: "present"
+#     update_cache: true
+#   become: true
 
 - name: "Add Visual Studio Code repository"
   ansible.builtin.yum_repository:
