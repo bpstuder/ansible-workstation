@@ -78,21 +78,21 @@
         name: "com.slack.Slack"
         state: present
         method: user
-    - name: "Install Discord"
-      community.general.flatpak:
-        name: "com.discordapp.Discord"
-        state: present
-        method: user
+    # - name: "Install Discord"
+    #   community.general.flatpak:
+    #     name: "com.discordapp.Discord"
+    #     state: present
+    #     method: user
     - name: "Install XIVLauncher"
       community.general.flatpak:
         name: "dev.goats.xivlauncher"
         state: present
         method: user
-    - name: "Install Lutris"
-      community.general.flatpak:
-        name: "net.lutris.Lutris"
-        state: present
-        method: user
+    # - name: "Install Lutris"
+    #   community.general.flatpak:
+    #     name: "net.lutris.Lutris"
+    #     state: present
+    #     method: user
     - name: "Install Postman"
       community.general.flatpak:
         name: "com.getpostman.Postman"
@@ -103,19 +103,24 @@
         name: "com.skype.Client"
         state: present
         method: user
-    - name: "Install Extension Manager"
-      community.general.flatpak:
-        name: "com.mattjakeman.ExtensionManager"
-        state: present
-        method: user
-    - name: "Install Gnome Tweaks"
-      community.general.flatpak:
-        name: "org.gnome.Tweaks"
-        state: present
-        method: user
+    # - name: "Install Extension Manager"
+    #   community.general.flatpak:
+    #     name: "com.mattjakeman.ExtensionManager"
+    #     state: present
+    #     method: user
+    # - name: "Install Gnome Tweaks"
+    #   community.general.flatpak:
+    #     name: "org.gnome.Tweaks"
+    #     state: present
+    #     method: user
     - name: "Install Github Desktop"
       community.general.flatpak:
         name: "io.github.shiftey.Desktop"
+        state: present
+        method: user
+    - name: "Install ProtonUp-QT"
+      community.general.flatpak:
+        name: "net.davidotek.pupgui2"
         state: present
         method: user
 
