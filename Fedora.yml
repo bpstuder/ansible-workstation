@@ -11,28 +11,6 @@
     name: '*'
     state: latest
 
-- name: "Install packages"
-  ansible.builtin.package:
-    name:
-      - htop # htop
-      - git # Git
-      - curl # Curl
-      - zsh # Z shell
-      - whois # whois
-      - jq # JSON parser
-      - tlp # Power management
-      - flameshot # Screenshot tool
-      - filezilla # FTP client
-      - remmina # Remote desktop client
-      - python3-pip # Python3 pip
-      - python3-psutil # Python3 psutil
-      - cifs-utils # Mounting Windows shares
-      - ansible-lint # Ansible Lint
-      - fira-code-fonts # Fira Code font
-      - piper # Logitech mouse and keyboard configuration tool
-    state: present
-  become: true
-
 - name: Importing RPM Fusion Free key
   ansible.builtin.rpm_key:
     state: present
@@ -159,6 +137,32 @@
     name: "code"
     state: "present"
   when: ansible_facts['os_family'] == "RedHat"
+  become: true
+
+- name: "Install packages"
+  ansible.builtin.package:
+    name:
+      - htop # htop
+      - git # Git
+      - curl # Curl
+      - zsh # Z shell
+      - whois # whois
+      - jq # JSON parser
+      # - tlp # Power management
+      - flameshot # Screenshot tool
+      - filezilla # FTP client
+      - remmina # Remote desktop client
+      - python3-pip # Python3 pip
+      - python3-psutil # Python3 psutil
+      - cifs-utils # Mounting Windows shares
+      - ansible-lint # Ansible Lint
+      - fira-code-fonts # Fira Code font
+      - piper # Logitech mouse and keyboard configuration tool
+      - lutris # Lutris
+      - steam # Steam
+      - discord # Discord
+      - vlc # VLC
+    state: present
   become: true
 
 - name: "Packages Cleanup"
