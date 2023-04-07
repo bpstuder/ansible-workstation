@@ -14,22 +14,22 @@
 - name: "Install packages"
   ansible.builtin.package:
     name:
-      - htop
-      - mc
-      - git
-      - curl
-      - zsh
-      - whois
-      - jq
-      - tlp
-      - flameshot
-      - filezilla
-      - remmina
-      - python3-pip
-      - python3-psutil
-      - cifs-utils
-      - ansible-lint
-      - fira-code-fonts
+      - htop # htop
+      - git # Git
+      - curl # Curl
+      - zsh # Z shell
+      - whois # whois
+      - jq # JSON parser
+      - tlp # Power management
+      - flameshot # Screenshot tool
+      - filezilla # FTP client
+      - remmina # Remote desktop client
+      - python3-pip # Python3 pip
+      - python3-psutil # Python3 psutil
+      - cifs-utils # Mounting Windows shares
+      - ansible-lint # Ansible Lint
+      - fira-code-fonts # Fira Code font
+      - piper # Logitech mouse and keyboard configuration tool
     state: present
   become: true
 
@@ -127,13 +127,30 @@
 #     update_cache: true
 #   become: true
 
+- name: "Add Brave Browser repository"
+  ansible.builtin.yum_repository:
+    name: "brave-browser"
+    description: Brave Browser Repository
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
+    gpgcheck: true
+    enabled: true
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  when: ansible_facts['os_family'] == "RedHat"
+  become: true
+- name: "Install Brave Browser"
+  ansible.builtin.package:
+    name: "brave-browser"
+    state: "present"
+  when: ansible_facts['os_family'] == "RedHat"
+  become: true
+  
 - name: "Add Visual Studio Code repository"
   ansible.builtin.yum_repository:
     name: "vscode"
     description: Visual Studio Code Repository
     baseurl: https://packages.microsoft.com/yumrepos/vscode
-    gpgcheck: 1
-    enabled: 1
+    gpgcheck: true
+    enabled: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
   when: ansible_facts['os_family'] == "RedHat"
   become: true
