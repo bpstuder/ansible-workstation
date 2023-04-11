@@ -23,6 +23,8 @@ case $osName in
     *"Fedora"*)
         echo "Installing DNF-Automatic Role for Ansible"
         ansible-galaxy install exploide.dnf-automatic
+        echo "Install customize-gnome Role for Ansible"
+        ansible-galaxy install petermosmans.customize-gnome
     ;;
 
     "EndeavourOS"*|"Manjaro"*|"ArchLinux"*)
