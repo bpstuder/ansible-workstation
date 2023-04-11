@@ -11,12 +11,12 @@
               - git
               - docker
             update_mode: auto
-#    - role: exploide.dnf-automatic
-#      dnf_automatic_upgrade_type: default
-#      dnf_automatic_apply_updates: true
-#      dnf_automatic_download_updates: true
-#      become: true
-#      when: ansible_distribution == "RedHat"
+    - role: exploide.dnf-automatic
+      dnf_automatic_upgrade_type: default
+      dnf_automatic_apply_updates: true
+      dnf_automatic_download_updates: true
+      become: true
+      when: ansible_distribution == "RedHat"
   tasks:
     - name: "Display the distribution"
       ansible.builtin.debug:
@@ -103,16 +103,16 @@
         name: "com.skype.Client"
         state: present
         method: user
-    # - name: "Install Extension Manager"
-    #   community.general.flatpak:
-    #     name: "com.mattjakeman.ExtensionManager"
-    #     state: present
-    #     method: user
-    # - name: "Install Gnome Tweaks"
-    #   community.general.flatpak:
-    #     name: "org.gnome.Tweaks"
-    #     state: present
-    #     method: user
+     - name: "Install Extension Manager"
+       community.general.flatpak:
+         name: "com.mattjakeman.ExtensionManager"
+         state: present
+         method: user
+     - name: "Install Gnome Tweaks"
+       community.general.flatpak:
+         name: "org.gnome.Tweaks"
+         state: present
+         method: user
     - name: "Install Github Desktop"
       community.general.flatpak:
         name: "io.github.shiftey.Desktop"
@@ -148,68 +148,68 @@
         - files/*
       become: true
 
-    # - name: GNOME Preferences - Nautilus - Clock Format
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/interface/clock-format"
-    #     value: "'24h'"
-    #     state: present
-    # - name: GNOME Preferences - Mouse - Enable touchpad Right click
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/peripherals/touchpad/click-method"
-    #     value: "'areas'"
-    #     state: present
-    # - name: GNOME Preferences - Mouse - Enable touchpad tap-to-click
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
-    #     value: "true"
-    #     state: present
-    # - name: "GNOME Preferences - Window Buttons"
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/wm/preferences/button-layout"
-    #     value: "'appmenu:minimize,maximize,close'"
-    #     state: "present"
-    # - name: Set GNOME wallpaper
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/background/picture-uri"
-    #     value: "'file:///home/{{ ansible_user_id }}/Pictures/kugane.jpeg'"
-    #     state: "present"
-    # - name: Set GNOME wallpaper (dark)
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/background/picture-uri-dark"
-    #     value: "'file:///home/{{ ansible_user_id }}/Pictures/kugane.jpeg'"
-    #     state: "present"
-    # - name: "GNOME Preferences - Desktop Icons"
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/background/show-desktop-icons"
-    #     value: "true"
-    #     state: "present"
-    # - name: "GNOME Preferences - Enable location services"
-    #   community.general.dconf:
-    #     key: "/org/gnome/system/location/enabled"
-    #     value: "true"
-    #     state: "present"
-    # - name: "GNOME Preferences - Enable dark mode"
-    #   community.general.dconf:
-    #     key: "/org/gnome/desktop/interface/color-scheme"
-    #     value: "'prefer-dark'"
-    #     state: "present"
-    # - name: "GNOME Preferences - Flameshot shortcut name"
-    #   community.general.dconf:
-    #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
-    #     value: "'flameshot'"
-    #     state: "present"
-    # - name: "GNOME Preferences - Flameshot shortcut command"
-    #   community.general.dconf:
-    #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-    #     value: "'flameshot gui'"
-    #     state: "present"
-    # - name: "GNOME Preferences - Flameshot shortcut binding"
-    #   community.general.dconf:
-    #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
-    #     value: "'Print'"
-    #     state: "present"
-    # - name: "GNOME Preferences - Disable default screenshot shortcut"
-    #   community.general.dconf:
-    #     key: "/org/gnome/shell/keybindings/show-screenshot-ui"
-    #     value: "@as []"
-    #     state: "present"
+     - name: GNOME Preferences - Nautilus - Clock Format
+       community.general.dconf:
+         key: "/org/gnome/desktop/interface/clock-format"
+         value: "'24h'"
+         state: present
+     - name: GNOME Preferences - Mouse - Enable touchpad Right click
+       community.general.dconf:
+         key: "/org/gnome/desktop/peripherals/touchpad/click-method"
+         value: "'areas'"
+         state: present
+     - name: GNOME Preferences - Mouse - Enable touchpad tap-to-click
+       community.general.dconf:
+         key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+         value: "true"
+         state: present
+     - name: "GNOME Preferences - Window Buttons"
+       community.general.dconf:
+         key: "/org/gnome/desktop/wm/preferences/button-layout"
+         value: "'appmenu:minimize,maximize,close'"
+         state: "present"
+     - name: Set GNOME wallpaper
+       community.general.dconf:
+         key: "/org/gnome/desktop/background/picture-uri"
+         value: "'file:///home/{{ ansible_user_id }}/Pictures/kugane.jpeg'"
+         state: "present"
+     - name: Set GNOME wallpaper (dark)
+       community.general.dconf:
+         key: "/org/gnome/desktop/background/picture-uri-dark"
+         value: "'file:///home/{{ ansible_user_id }}/Pictures/kugane.jpeg'"
+         state: "present"
+     - name: "GNOME Preferences - Desktop Icons"
+       community.general.dconf:
+         key: "/org/gnome/desktop/background/show-desktop-icons"
+         value: "true"
+         state: "present"
+     - name: "GNOME Preferences - Enable location services"
+       community.general.dconf:
+         key: "/org/gnome/system/location/enabled"
+         value: "true"
+         state: "present"
+     - name: "GNOME Preferences - Enable dark mode"
+       community.general.dconf:
+         key: "/org/gnome/desktop/interface/color-scheme"
+         value: "'prefer-dark'"
+         state: "present"
+     - name: "GNOME Preferences - Flameshot shortcut name"
+       community.general.dconf:
+         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+         value: "'flameshot'"
+         state: "present"
+     - name: "GNOME Preferences - Flameshot shortcut command"
+       community.general.dconf:
+         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+         value: "'flameshot gui'"
+         state: "present"
+     - name: "GNOME Preferences - Flameshot shortcut binding"
+       community.general.dconf:
+         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+         value: "'Print'"
+         state: "present"
+     - name: "GNOME Preferences - Disable default screenshot shortcut"
+       community.general.dconf:
+         key: "/org/gnome/shell/keybindings/show-screenshot-ui"
+         value: "@as []"
+         state: "present"
