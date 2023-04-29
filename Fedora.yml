@@ -53,6 +53,28 @@
     state: "present"
   when: ansible_facts['os_family'] == "RedHat"
   become: true
+
+- name: Importing Github Desktop key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://mirror.mwt.me/shiftkey-desktop/gpgkey
+  become: true
+- name: "Add Github Desktop repository"
+  ansible.builtin.yum_repository:
+    name: "github-desktop"
+    description: GitHub Desktop
+    baseurl: https://mirror.mwt.me/shiftkey-desktop/rpm
+    gpgcheck: true
+    enabled: true
+    gpgkey: https://mirror.mwt.me/shiftkey-desktop/gpgkey
+  when: ansible_facts['os_family'] == "RedHat"
+  become: true
+- name: "Install Github Desktop"
+  ansible.builtin.package:
+    name: "github-desktop"
+    state: "present"
+  when: ansible_facts['os_family'] == "RedHat"
+  become: true
   
 - name: "Add Visual Studio Code repository"
   ansible.builtin.yum_repository:
