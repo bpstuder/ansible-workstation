@@ -37,74 +37,6 @@
   become:  true
   ignore_errors: true
 
-#- name: "[Chrome] Add Yum signing key"
-#  ansible.builtin.rpm_key:
-#    key: https://dl.google.com/linux/linux_signing_key.pub
-#    state: "present"
-#  become: true
-#- name: "[Chrome] Add repository into repo.d list"
-#  ansible.builtin.yum_repository:
-#    name: "google-chrome"
-#    description: google-chrome repository
-#    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
-#    enabled: true
-#    gpgcheck: true
-#    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-#  become: true
-#- name: "[Chrome] Install google-chrome-stable"
-#  ansible.builtin.package:
-#    name: "google-chrome-stable"
-#    state: "present"
-#    update_cache: true
-#  become: true
-
-# - name: "[VirtualBox] Add Yum signing key"
-#   ansible.builtin.rpm_key:
-#     key: https://www.virtualbox.org/download/oracle_vbox.asc
-#     state: "present"
-#   become: true
-#   register: vbox_result
-# - name: "[VirtualBox] Add repository into repo.d list"
-#   ansible.builtin.yum_repository:
-#     name: "VirtualBox"
-#     description: virtualbox repository
-#     baseurl: https://download.virtualbox.org/virtualbox/rpm/fedora/36/x86_64/
-#     enabled: true
-#     gpgcheck: true
-#     repo_gpgcheck: true
-#     gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
-#   become: true
-#   when: vbox_result is succeeded
-# - name: "[VirtualBox] Install virtualbox"
-#   ansible.builtin.package:
-#     name: "VirtualBox-7.0"
-#     state: "present"
-#     update_cache: true
-#   become: true
-#   when: vbox_result is succeeded
-
-# - name: "[Github Desktop] Add Yum signing key"
-#   ansible.builtin.rpm_key:
-#     key: https://mirror.mwt.me/ghd/gpgkey
-#     state: "present"
-#   become: true
-# - name: "[Github Desktop] Add repository into repo.d list"
-#   ansible.builtin.yum_repository:
-#     name: "shiftkey"
-#     description: "github desktop repository"
-#     baseurl: https://mirror.mwt.me/ghd/rpm
-#     enabled: true
-#     gpgcheck: false
-#     repo_gpgcheck: true
-#     gpgkey: https://mirror.mwt.me/ghd/gpgkey
-#   become: true
-# - name: "[Github Desktop] Install github-desktop"
-#   ansible.builtin.package:
-#     name: "github-desktop"
-#     state: "present"
-#     update_cache: true
-#   become: true
-
 - name: "Add Brave Browser repository"
   ansible.builtin.yum_repository:
     name: "brave-browser"
@@ -162,7 +94,10 @@
       - steam # Steam
       - discord # Discord
       - vlc # VLC
-      - haruna # Haruna
+      - openrgb # OpenRGB
+      - ncdu # ncdu
+      # - haruna # Haruna
+      - dnf-automatic # DNF Automatic
       # - gnome-tweaks # Gnome Tweaks
     state: present
   become: true
@@ -172,15 +107,5 @@
   become_method: sudo
   ansible.builtin.package:
     autoremove: true
-
-# - vars:
-#   gnome_extensions:
-#     - id: 307 # Dash to Dock
-#       enable: yes
-#     - id: 615 # AppIndicator and KStatusNotifierItem Support
-#       enable: yes
-#     - id: 5446 # Quick Settings Tweaker
-#       enable: yes
-
 
 
