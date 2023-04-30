@@ -27,7 +27,7 @@
       # - steam
       # - discord
       - vlc
-      - openrgb
+      # - openrgb
       - ncdu
     state: present
   become: true
@@ -65,3 +65,8 @@
   kewlfft.aur.aur:
     use: yay
     name: steam
+
+- name: Install OpenRGB using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: openrgb

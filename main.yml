@@ -11,12 +11,12 @@
               - git
               - docker
             update_mode: auto
-    - role: exploide.dnf-automatic
-      dnf_automatic_upgrade_type: default
-      dnf_automatic_apply_updates: true
-      dnf_automatic_download_updates: true
-      become: true
-      when: ansible_distribution == "RedHat"
+    # - role: exploide.dnf-automatic
+    #   dnf_automatic_upgrade_type: default
+    #   dnf_automatic_apply_updates: true
+    #   dnf_automatic_download_updates: true
+    #   become: true
+    #   when: ansible_distribution == "RedHat"
   tasks:
     - name: "Display the distribution"
       ansible.builtin.debug:
