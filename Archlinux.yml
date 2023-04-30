@@ -22,13 +22,24 @@
       - cifs-utils
       - ttf-firacode-nerd
       - ansible-lint
+      - piper
+      - lutris
+      # - steam
+      # - discord
+      - vlc
+      - openrgb
+      - ncdu
     state: present
   become: true
 
-- name: Install Google Chrome using yay
+# - name: Install Google Chrome using yay
+#   kewlfft.aur.aur:
+#     use: yay
+#     name: google-chrome
+- name: Install Brave Browser using yay
   kewlfft.aur.aur:
     use: yay
-    name: google-chrome
+    name: brave-bin
 
 - name: Install Github-Desktop using yay
   kewlfft.aur.aur:
@@ -40,12 +51,17 @@
     use: yay
     name: visual-studio-code-bin
 
-- name: Install VirtualBox using yay
-  kewlfft.aur.aur:
-    use: yay
-    name: virtualbox
+# - name: Install VirtualBox using yay
+#   kewlfft.aur.aur:
+#     use: yay
+#     name: virtualbox
     
 - name: Install Discord using yay
   kewlfft.aur.aur:
     use: yay
     name: discord
+
+- name: Install Steam using yay
+  kewlfft.aur.aur:
+    use: yay
+    name: steam
