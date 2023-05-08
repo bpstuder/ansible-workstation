@@ -13,6 +13,8 @@ echo "Setting up prerequisites"
 osName=$(hostnamectl | grep "Operating System" | awk -F": " {'print $2'})
 echo "Detected OS : $osName"
 
+desktopEnvironment=$(echo $XDG_CURRENT_DESKTOP)
+echo "Detected Desktop Environment : $desktopEnvironment"
 # echo "Installing Golang Role for Ansible"
 # ansible-galaxy install fubarhouse.golang
 
