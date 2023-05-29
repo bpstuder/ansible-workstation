@@ -102,6 +102,7 @@
       - github-desktop-bin
       - visual-studio-code-bin
       - oh-my-zsh-git
+      - postman-bin
 
 - name: Install game softwares using yay
   kewlfft.aur.aur:
@@ -115,7 +116,7 @@
       - wine
       - mangohud-git
       - gamemode
-      - caffeine-ng
+      # - caffeine-ng
       - libappindicator-gtk3
 
 - name: Install chat softwares using yay
@@ -155,42 +156,17 @@
       - ttf-ubuntu-font-family
       - ttf-windows
       - ttf-fira-code
-      - ttf-fira-mono
-      - ttf-fira-sans
-      - ttf-fira-sans-mono
-      - ttf-fira-sans-condensed
-      - ttf-fira-sans-condensed-mono
-      - ttf-fira-sans-extra-condensed
-      - ttf-fira-sans-extra-condensed-mono
-      - ttf-fira-sans-extended
-      - ttf-fira-sans-extended-mono
-      - ttf-fira-sans-narrow
-      - ttf-fira-sans-narrow-mono
-      - ttf-fira-sans-semi-condensed
-      - ttf-fira-sans-semi-condensed-mono
-      - ttf-fira-sans-ultra-condensed
-      - ttf-fira-sans-ultra-condensed-mono
-      - ttf-fira-sans-hair
-      - ttf-fira-sans-hair-mono
-      - ttf-fira-sans-thin
-      - ttf-fira-sans-thin-mono
-      - ttf-fira-sans-light
-      - ttf-fira-sans-light-mono
-      - ttf-fira-sans-book
-      - ttf-fira-sans-book-mono
-      - ttf-fira-sans-medium
-      - ttf-fira-sans-medium-mono
-      - ttf-fira-sans-bold
-      - ttf-fira-sans-bold-mono
-      - ttf-fira-sans-extra-bold
-      - ttf-fira-sans-extra-bold-mono
-      - ttf-fira-sans-heavy
-      - ttf-fira-sans-heavy-mono
-      - ttf-fira-sans-black
-      - ttf-fira-sans-black-mono
-      - ttf-fira-sans-ultra
-      - ttf-fira-sans-ultra-mono
-      - ttf-fira-sans-retro
+
+- name: Install Gnome extensions using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - gnome-shell-extension-dash-to-dock
+      - gnome-shell-extension-gsconnect
+      - gnome-shell-extension-caffeine
+      - gnome-shell-extension-arch-update
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-vitals
 
 - name: "Set configuration options in MangoHud file"
   lineinfile:

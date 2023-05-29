@@ -17,21 +17,21 @@
     #   dnf_automatic_download_updates: true
     #   become: true
     #   when: ansible_distribution == "RedHat"
-    - role: petermosmans.customize-gnome
-  vars:
-    gnome_extensions:
-      - id: 517 # Caffeine
-        enable: yes
-      - id: 1319 # GSConnect
-        enable: yes
-      - id: 4798 # Thinkpad Battery Threshold
-        enable: yes
-      - id: 1460 # Vitals
-        enable: yes
-      - id: 615 # AppIndicator and KStatusNotifierItem Support
-        enable: yes
-      - id: 307 # Dash to dock
-        enable: yes
+  #   - role: petermosmans.customize-gnome
+  # vars:
+  #   gnome_extensions:
+      # - id: 517 # Caffeine
+      #   enable: yes
+      # - id: 1319 # GSConnect
+      #   enable: yes
+      # - id: 4798 # Thinkpad Battery Threshold
+      #   enable: yes
+      # - id: 1460 # Vitals
+      #   enable: yes
+      # - id: 615 # AppIndicator and KStatusNotifierItem Support
+      #   enable: yes
+      # - id: 307 # Dash to dock
+      #   enable: yes
 
   tasks:
     - name: "Display the distribution"
