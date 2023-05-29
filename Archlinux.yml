@@ -226,6 +226,7 @@
   lineinfile:
     path: /etc/sysctl.d/99-sysctl.conf
     line: "vm.max_map_count = 2147483642"
+    create: true
     state: present
   become: true
 
