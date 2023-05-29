@@ -1,3 +1,9 @@
+- name: "Increase ParallelDownloads to 10"
+  replace:
+    dest: "/etc/pacman.conf"
+    regexp: '^#ParallelDownloads = 5'
+    replace: 'ParallelDownloads = 10'
+
 - name: Run the equivalent of "pacman -Syu" as a separate step
   community.general.pacman:
     update_cache: true
@@ -24,49 +30,187 @@
       - ansible-lint
       - piper
       - lutris
-      # - steam
-      # - discord
       - vlc
-      # - openrgb
       - ncdu
+      - snapper
+      - snap-pac
+      - pavucontrol
     state: present
   become: true
 
-# - name: Install Google Chrome using yay
-#   kewlfft.aur.aur:
-#     use: yay
-#     name: google-chrome
-- name: Install Brave Browser using yay
-  kewlfft.aur.aur:
-    use: yay
-    name: brave-bin
+- name: "Install Wine dependencies for Lutris"
+  ansible.builtin.packages:
+    name:
+      - wine-staging
+      - giflib
+      - lib32-giflib
+      - libpng
+      - lib32-libpng
+      - libldap
+      - lib32-libldap
+      - gnutls
+      - lib32-gnutls
+      - mpg123
+      - lib32-mpg123
+      - openal
+      - lib32-openal
+      - v4l-utils
+      - lib32-v4l-utils
+      - libpulse
+      - lib32-libpulse
+      - libgpg-error
+      - lib32-libgpg-error
+      - alsa-plugins
+      - lib32-alsa-plugins
+      - alsa-lib
+      - lib32-alsa-lib
+      - libjpeg-turbo
+      - lib32-libjpeg-turbo
+      - sqlite
+      - lib32-sqlite
+      - libxcomposite
+      - lib32-libxcomposite
+      - libxinerama
+      - lib32-libgcrypt
+      - libgcrypt
+      - lib32-libxinerama
+      - ncurses
+      - lib32-ncurses
+      - ocl-icd
+      - lib32-ocl-icd
+      - libxslt
+      - lib32-libxslt
+      - libva
+      - lib32-libva
+      - gtk3
+      - lib32-gtk3
+      - gst-plugins-base-libs
+      - lib32-gst-plugins-base-libs
+      - vulkan-icd-loader
+      - lib32-vulkan-icd-loader
+    state: present
 
-- name: Install Github-Desktop using yay
-  kewlfft.aur.aur:
-    use: yay
-    name: github-desktop-bin
 
-- name: Install Visual Studio Code using yay
+- name: Install dev softwares using yay
   kewlfft.aur.aur:
     use: yay
-    name: visual-studio-code-bin
+    name:
+      - github-desktop-bin
+      - visual-studio-code-bin
+      - oh-my-zsh-git
 
-# - name: Install VirtualBox using yay
-#   kewlfft.aur.aur:
-#     use: yay
-#     name: virtualbox
-    
-- name: Install Discord using yay
+- name: Install game softwares using yay
   kewlfft.aur.aur:
     use: yay
-    name: discord
+    name:
+      - lutris
+      - steam
+      - discord
+      - protonup-qt
+      - protontricks
+      - wine
+      - mangohud-git
+      - gamemode
+      - caffeine-ng
+      - libappindicator-gtk3
 
-- name: Install Steam using yay
+- name: Install chat softwares using yay
   kewlfft.aur.aur:
     use: yay
-    name: steam
+    name:
+      - discord
+      - skypeforlinux-stable-bin
+      - slack-desktop
+      - telegram-desktop-bin
+      - zoom
 
-- name: Install OpenRGB using yay
+- name: Install utilities using yay
   kewlfft.aur.aur:
     use: yay
-    name: openrgb
+    name:
+      - brave-bin
+      - openrgb
+      - corectrl
+      - bottles
+      - flatseal
+      - kooha
+      - btrfs-assistant
+      - gnome-browser-connector
+
+- name: Install fonts using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - ttf-ms-fonts
+      - ttf-roboto
+      - ttf-roboto-mono
+      - ttf-roboto-slab
+      - ttf-ubuntu-font-family
+      - ttf-windows
+      - ttf-fira-code
+      - ttf-fira-mono
+      - ttf-fira-sans
+      - ttf-fira-sans-mono
+      - ttf-fira-sans-condensed
+      - ttf-fira-sans-condensed-mono
+      - ttf-fira-sans-extra-condensed
+      - ttf-fira-sans-extra-condensed-mono
+      - ttf-fira-sans-extended
+      - ttf-fira-sans-extended-mono
+      - ttf-fira-sans-narrow
+      - ttf-fira-sans-narrow-mono
+      - ttf-fira-sans-semi-condensed
+      - ttf-fira-sans-semi-condensed-mono
+      - ttf-fira-sans-ultra-condensed
+      - ttf-fira-sans-ultra-condensed-mono
+      - ttf-fira-sans-hair
+      - ttf-fira-sans-hair-mono
+      - ttf-fira-sans-thin
+      - ttf-fira-sans-thin-mono
+      - ttf-fira-sans-light
+      - ttf-fira-sans-light-mono
+      - ttf-fira-sans-book
+      - ttf-fira-sans-book-mono
+      - ttf-fira-sans-medium
+      - ttf-fira-sans-medium-mono
+      - ttf-fira-sans-bold
+      - ttf-fira-sans-bold-mono
+      - ttf-fira-sans-extra-bold
+      - ttf-fira-sans-extra-bold-mono
+      - ttf-fira-sans-heavy
+      - ttf-fira-sans-heavy-mono
+      - ttf-fira-sans-black
+      - ttf-fira-sans-black-mono
+      - ttf-fira-sans-ultra
+      - ttf-fira-sans-ultra-mono
+      - ttf-fira-sans-retro
+
+- name: "Set configuration options in MangoHud file"
+  lineinfile:
+    path: .config/MangoHud/MangoHud.conf
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - { line: "## GPU Options ##" }
+    - { line: "gpu_stats" }
+    - { line: "gpu_temp" }
+    - { line: "gpu_core_clock" }
+    - { line: "gpu_mem_clock" }
+    - { line: "gpu_power" }
+    - { line: "gpu_text=GPU" }
+    - { line: "## CPU Options" }
+    - { line: "cpu_stats" }
+    - { line: "cpu_temp" }
+    - { line: "cpu_text=CPU" }
+    - { line: "## FPS and Frametime" }
+    - { line: "fps" }
+    - { line: "frametime" }
+
+- name: "Modify Kernel cmdline for CoreCtrl"
+  lineinfile:
+    path: /etc/kernel/cmdline
+    line: "amdgpu.ppfeaturemask=0xffffffff"
+    state: present
+
+- name: "Rebuild kernels"
+  command: "reinstall-kernels"

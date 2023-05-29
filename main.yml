@@ -17,6 +17,25 @@
     #   dnf_automatic_download_updates: true
     #   become: true
     #   when: ansible_distribution == "RedHat"
+    - role: petermosmans.customize-gnome
+  vars:
+    gnome_dconf:
+      - key: /org/gnome/nautilus/list-view/default-visible-columns
+        value: "['name', 'size', 'type', 'date_modified']"
+    gnome_extensions:
+      - id: 517 # Caffeine
+        enable: yes
+      - id: 1319 # GSConnect
+        enable: yes
+      - id: 4798 # Thinkpad Battery Threshold
+        enable: yes
+      - id: 1460 # Vitals
+        enable: yes
+      - id: 1301 # AppIndicators
+        enable: yes
+      - id: 307 # Dash to dock
+        enable: yes
+
   tasks:
     - name: "Display the distribution"
       ansible.builtin.debug:
@@ -113,11 +132,11 @@
     #     name: "io.github.shiftey.Desktop"
     #     state: present
     #     method: user
-    - name: "Install ProtonUp-QT"
-      community.general.flatpak:
-        name: "net.davidotek.pupgui2"
-        state: present
-        method: user
+    # - name: "Install ProtonUp-QT"
+    #   community.general.flatpak:
+    #     name: "net.davidotek.pupgui2"
+    #     state: present
+    #     method: user
 
     - name: "Unwanted KDE packages"
       become: true

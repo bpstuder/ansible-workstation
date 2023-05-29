@@ -21,12 +21,14 @@ echo "Detected Desktop Environment : $desktopEnvironment"
 echo "Installing Oh-My-ZSH Role for Ansible"
 ansible-galaxy install gantsign.oh-my-zsh
 
+echo "Install customize-gnome Role for Ansible"
+ansible-galaxy install petermosmans.customize-gnome
+
 case $osName in
     *"Fedora"*)
         echo "Installing DNF-Automatic Role for Ansible"
         ansible-galaxy install exploide.dnf-automatic
-        # echo "Install customize-gnome Role for Ansible"
-        # ansible-galaxy install petermosmans.customize-gnome
+
     ;;
 
     "EndeavourOS"*|"Manjaro"*|"ArchLinux"*)
