@@ -220,15 +220,15 @@
   become: true
 
 - name: "[Gnome] Set maximize and minimize buttons"
-  become: yes
-  gsettings:
+  community.general.dconf:
     schema: org.gnome.desktop.wm.preferences
     key: button-layout
     value: 'appmenu:minimize,maximize,close'
+  become: yes
 
 - name: "[Gnome] Set visible columns"
-  become: yes
-  gsettings:
+  community.general.dconf:
     schema: org.gnome.nautilus.list-view
     key: default-visible-columns
     value: "['name', 'size', 'type', 'date_modified']"
+  become: yes
