@@ -69,56 +69,56 @@
     #   # when: ansible_facts['os_family'] == "RedHat"
     #   become: true
 
-    - name: "Install flatpak"
-      ansible.builtin.package:
-        name: "flatpak"
-        state: "present"
-        update_cache: true
-      become: true
+    # - name: "Install flatpak"
+    #   ansible.builtin.package:
+    #     name: "flatpak"
+    #     state: "present"
+    #     update_cache: true
+    #   become: true
 
-    - name: "Manage flathub Repository"
-      community.general.flatpak_remote:
-        name: "flathub"
-        state: "present"
-        flatpakrepo_url: "https://dl.flathub.org/repo/flathub.flatpakrepo"
-        method: "user"
-      # become: true
-    - name: "Install Zoom Flatpak"
-      community.general.flatpak:
-        name: "us.zoom.Zoom"
-        state: "present"
-        method: user
-      # become: true
-    - name: "Install Slack"
-      community.general.flatpak:
-        name: "com.slack.Slack"
-        state: present
-        method: user
-    # - name: "Install Discord"
+    # - name: "Manage flathub Repository"
+    #   community.general.flatpak_remote:
+    #     name: "flathub"
+    #     state: "present"
+    #     flatpakrepo_url: "https://dl.flathub.org/repo/flathub.flatpakrepo"
+    #     method: "user"
+    #   # become: true
+    # - name: "Install Zoom Flatpak"
     #   community.general.flatpak:
-    #     name: "com.discordapp.Discord"
+    #     name: "us.zoom.Zoom"
+    #     state: "present"
+    #     method: user
+    #   # become: true
+    # - name: "Install Slack"
+    #   community.general.flatpak:
+    #     name: "com.slack.Slack"
     #     state: present
     #     method: user
-    - name: "Install XIVLauncher"
-      community.general.flatpak:
-        name: "dev.goats.xivlauncher"
-        state: present
-        method: user
-    # - name: "Install Lutris"
+    # # - name: "Install Discord"
+    # #   community.general.flatpak:
+    # #     name: "com.discordapp.Discord"
+    # #     state: present
+    # #     method: user
+    # - name: "Install XIVLauncher"
     #   community.general.flatpak:
-    #     name: "net.lutris.Lutris"
+    #     name: "dev.goats.xivlauncher"
     #     state: present
     #     method: user
-    - name: "Install Postman"
-      community.general.flatpak:
-        name: "com.getpostman.Postman"
-        state: present
-        method: user
-    - name: "Install Skype"
-      community.general.flatpak:
-        name: "com.skype.Client"
-        state: present
-        method: user
+    # # - name: "Install Lutris"
+    # #   community.general.flatpak:
+    # #     name: "net.lutris.Lutris"
+    # #     state: present
+    # #     method: user
+    # - name: "Install Postman"
+    #   community.general.flatpak:
+    #     name: "com.getpostman.Postman"
+    #     state: present
+    #     method: user
+    # - name: "Install Skype"
+    #   community.general.flatpak:
+    #     name: "com.skype.Client"
+    #     state: present
+    #     method: user
     # - name: "Install Gnome Extensions"
     #   community.general.flatpak:
     #     name: "org.gnome.Extensions"
