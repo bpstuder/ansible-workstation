@@ -140,6 +140,9 @@
       - kooha
       - btrfs-assistant
       - gnome-browser-connector
+      - gnome-shell-extensions
+      - pacman-contrib
+      - gnome-shell-extension-arch-update
 
 - name: Install fonts using yay
   kewlfft.aur.aur:
