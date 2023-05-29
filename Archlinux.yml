@@ -289,7 +289,7 @@
 
 - name: "[Gnome] Enable location services"
   community.general.dconf:
-    key: /org/gnome/system/location/
+    key: /org/gnome/system/location/enabled
     value: "true"
     state: present
 
