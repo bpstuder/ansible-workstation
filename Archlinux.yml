@@ -40,7 +40,7 @@
   become: true
 
 - name: "Install Wine dependencies for Lutris"
-  ansible.builtin.packages:
+  ansible.builtin.package:
     name:
       - wine-staging
       - giflib
