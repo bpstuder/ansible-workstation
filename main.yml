@@ -31,7 +31,7 @@
         enable: yes
       - id: 1460 # Vitals
         enable: yes
-      - id: 1301 # AppIndicators
+      - id: 615 # AppIndicator and KStatusNotifierItem Support
         enable: yes
       - id: 307 # Dash to dock
         enable: yes
