@@ -235,72 +235,63 @@
 
 - name: "[Gnome] Set maximize and minimize buttons"
   community.general.dconf:
-    key: /org/gnome/desktop/wm/preferences/button-layout/
+    key: /org/gnome/desktop/wm/preferences/button-layout
     value: 'appmenu:minimize,maximize,close'
     state: present
-  become: yes
 
 - name: "[Gnome] Set Nautilus view mode"
   community.general.dconf:
-    key: /org/gnome/nautilus/preferences/default-folder-viewer/
+    key: /org/gnome/nautilus/preferences/default-folder-viewer
     value: "'list-view'"
     state: present
-  become: yes
 
 - name: "[Gnome] Set Nautilus sort order"
   community.general.dconf:
-    key: /org/gnome/nautilus/preferences/default-sort-order/
+    key: /org/gnome/nautilus/preferences/default-sort-order
     value: "'type'"
     state: present
 
 - name: "[Gnome] Set visible columns"
   community.general.dconf:
-    key: /org/gnome/nautilus/list-view/default-visible-columns/
+    key: /org/gnome/nautilus/list-view/default-visible-columns
     value: "['name', 'size', 'type', 'date_modified']"
     state: present
-  become: yes
 
 - name: "[Gnome] Set Nautilus zoom level"
   community.general.dconf:
-    key: /org/gnome/nautilus/list-view/default-zoom-level/
+    key: /org/gnome/nautilus/list-view/default-zoom-level
     value: "'small'"
     state: present
-  become: yes
 
 - name: "[Gnome] Set dark theme"
   community.general.dconf:
-    key: /org/gnome/desktop/interface/color-scheme/
+    key: /org/gnome/desktop/interface/color-scheme
     value: "'prefer-dark'"
     state: present
-  become: yes
 
 - name: "[Gnome] Set Clock Format"
   community.general.dconf:
-    key: /org/gnome/desktop/interface/clock-format/
+    key: /org/gnome/desktop/interface/clock-format
     value: "'24h'"
     state: present
-  become: yes
 
 - name: "[Gnome] Touchpad settings"
   community.general.dconf:
-    key: /org/gnome/desktop/peripherals/touchpad/
+    key: /org/gnome/desktop/peripherals/touchpad/click-method
     value: "'areas'"
     state: present
-  become: yes
 
 - name: "[Gnome] Tap to click"
   community.general.dconf:
-    key: /org/gnome/desktop/peripherals/touchpad/tap-to-click/
+    key: /org/gnome/desktop/peripherals/touchpad/tap-to-click
     value: "true"
     state: present
-  become: yes
 
 - name: "[Gnome] Enable location services"
   community.general.dconf:
     key: /org/gnome/system/location/
     value: "true"
     state: present
-  become: yes
 
 - name: "Enable and start bluetooth"
   ansible.builtin.service:
