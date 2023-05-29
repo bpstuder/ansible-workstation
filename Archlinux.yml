@@ -214,3 +214,17 @@
 
 - name: "Rebuild kernels"
   command: "reinstall-kernels"
+
+- name: "[Gnome] Set maximize and minimize buttons"
+  become: yes
+  gsettings:
+    schema: org.gnome.desktop.wm.preferences
+    key: button-layout
+    value: 'appmenu:minimize,maximize,close'
+
+- name: "[Gnome] Set visible columns"
+  become: yes
+  gsettings:
+    schema: org.gnome.nautilus.list-view
+    key: default-visible-columns
+    value: "['name', 'size', 'type', 'date_modified']"

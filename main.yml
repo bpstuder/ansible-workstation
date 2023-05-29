@@ -19,9 +19,6 @@
     #   when: ansible_distribution == "RedHat"
     - role: petermosmans.customize-gnome
   vars:
-    gnome_dconf:
-      - key: /org/gnome/nautilus/list-view/default-visible-columns
-        value: "['name', 'size', 'type', 'date_modified']"
     gnome_extensions:
       - id: 517 # Caffeine
         enable: yes
