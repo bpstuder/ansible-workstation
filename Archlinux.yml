@@ -222,16 +222,85 @@
   command: "reinstall-kernels"
   become: true
 
+- name: "Add VM Max Map Count"
+  lineinfile:
+    path: /etc/sysctl.d/99-sysctl.conf
+    line: "vm.max_map_count = 2147483642"
+    state: present
+  become: true
+
 - name: "[Gnome] Set maximize and minimize buttons"
   community.general.dconf:
-    schema: org.gnome.desktop.wm.preferences
-    key: button-layout
+    key: /org/gnome/desktop/wm/preferences/button-layout
     value: 'appmenu:minimize,maximize,close'
+    state: present
   become: yes
+
+- name: "[Gnome] Set Nautilus view mode"
+  community.general.dconf:
+    key: /org/gnome/nautilus/preferences/default-folder-viewer
+    value: "'list-view'"
+    state: present
+  become: yes
+
+- name: "[Gnome] Set Nautilus sort order"
+  community.general.dconf:
+    key: /org/gnome/nautilus/preferences/default-sort-order
+    value: "'type'"
+    state: present
 
 - name: "[Gnome] Set visible columns"
   community.general.dconf:
-    schema: org.gnome.nautilus.list-view
-    key: default-visible-columns
+    key: /org/gnome/nautilus/list-view/default-visible-columns
     value: "['name', 'size', 'type', 'date_modified']"
+    state: present
+  become: yes
+
+- name: "[Gnome] Set Nautilus zoom level"
+  community.general.dconf:
+    key: /org/gnome/nautilus/list-view/default-zoom-level
+    value: "'small'"
+    state: present
+  become: yes
+
+- name: "[Gnome] Set dark theme"
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/color-scheme
+    value: "'prefer-dark'"
+    state: present
+  become: yes
+
+- name: "[Gnome] Set Clock Format"
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/clock-format
+    value: "'24h'"
+    state: present
+  become: yes
+
+- name: "[Gnome] Touchpad settings"
+  community.general.dconf:
+    key: /org/gnome/desktop/peripherals/touchpad/
+    value: "'areas'"
+    state: present
+  become: yes
+
+- name: "[Gnome] Tap to click"
+  community.general.dconf:
+    key: /org/gnome/desktop/peripherals/touchpad/tap-to-click
+    value: "true"
+    state: present
+  become: yes
+
+- name: "[Gnome] Enable location services"
+  community.general.dconf:
+    key: /org/gnome/system/location/
+    value: "true"
+    state: present
+  become: yes
+
+- name: "Enable and start bluetooth"
+  ansible.builtin.service:
+    name: bluetooth
+    enabled: yes
+    state: started
   become: yes
