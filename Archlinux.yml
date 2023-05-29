@@ -36,6 +36,8 @@
       - snapper
       - snap-pac
       - pavucontrol
+      - gnome-tweaks
+      - neofetch
     state: present
   become: true
 
@@ -131,7 +133,7 @@
     use: yay
     name:
       - brave-bin
-      - openrgb
+      - openrgb-bin
       - corectrl
       - bottles
       - flatseal
