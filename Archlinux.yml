@@ -193,6 +193,7 @@
   lineinfile:
     path: .config/MangoHud/MangoHud.conf
     line: "{{ item.line }}"
+    create: true
     state: present
   with_items:
     - { line: "## GPU Options ##" }
