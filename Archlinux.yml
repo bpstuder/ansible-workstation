@@ -38,6 +38,7 @@
       - pavucontrol
       - gnome-tweaks
       - neofetch
+      - plymouth
     state: present
   become: true
 
@@ -200,11 +201,20 @@
 - name: "Rebuild kernels"
   command: "reinstall-kernels"
   become: true
+  ignore_errors: true
 
 - name: "Add VM Max Map Count"
   lineinfile:
     path: /etc/sysctl.d/99-sysctl.conf
     line: "vm.max_map_count = 2147483642"
+    create: true
+    state: present
+  become: true
+
+- name: "Add plymouth in dracut"
+  lineinfile:
+    path: /etc/dracut.conf.d/plymouth.conf
+    line: "add_dracutmodules+=\" plymouth \""
     create: true
     state: present
   become: true
