@@ -240,7 +240,7 @@
 - name: "[Gnome] Set visible columns"
   community.general.dconf:
     key: /org/gnome/nautilus/list-view/default-visible-columns
-    value: "['name', 'size', 'type', 'date_modified']"
+    value: "['name', 'size', 'type', 'date_modified_with_time']"
     state: present
 
 - name: "[Gnome] Set Nautilus zoom level"
