@@ -119,8 +119,6 @@
       - gamemode
       # - caffeine-ng
       - libappindicator-gtk3
-      - xone
-      - xone-dongle-firmware
 
 - name: Install chat softwares using yay
   kewlfft.aur.aur:
