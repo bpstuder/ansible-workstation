@@ -6,7 +6,7 @@
       users:
         - username: "{{ ansible_user_id }}"
           oh_my_zsh:
-            theme: amuse
+            theme: candy
             plugins:
               - git
               - docker

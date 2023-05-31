@@ -52,3 +52,5 @@ esac
 echo "Starting ansible playbook"
 ansible-playbook main.yml -i inventory --ask-become-pass
 
+read -p "Install complete. Press a key to reboot..."
+sudo reboot
