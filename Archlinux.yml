@@ -172,9 +172,15 @@
       - gnome-shell-extension-appindicator
       - gnome-shell-extension-vitals
 
+- name: Create a MangoHud directory if it does not exist
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.config/MangoHud
+    state: directory
+    mode: '0755'
+
 - name: "Set configuration options in MangoHud file"
   lineinfile:
-    path: .config/MangoHud/MangoHud.conf
+    path: /home/{{ ansible_user }}/.config/MangoHud/MangoHud.conf
     line: "{{ item.line }}"
     create: true
     state: present
