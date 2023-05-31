@@ -119,6 +119,8 @@
       - gamemode
       # - caffeine-ng
       - libappindicator-gtk3
+      - xone
+      - xone-dongle-firmware
 
 - name: Install chat softwares using yay
   kewlfft.aur.aur:
@@ -145,18 +147,19 @@
       - gnome-shell-extensions
       - pacman-contrib
       - gnome-shell-extension-arch-update
+      - selectdefaultapplication-git
 
 - name: Install fonts using yay
   kewlfft.aur.aur:
     use: yay
     name:
-      - ttf-ms-fonts
       - ttf-roboto
       - ttf-roboto-mono
       - ttf-roboto-slab
       - ttf-ubuntu-font-family
       - ttf-windows
       - ttf-fira-code
+      - ttf-ms-win11-auto
 
 - name: Install Gnome extensions using yay
   kewlfft.aur.aur:
