@@ -172,13 +172,13 @@
 
 - name: Create a MangoHud directory if it does not exist
   ansible.builtin.file:
-    path: /home/{{ ansible_user }}/.config/MangoHud
+    path: /home/{{ ansible_user_id }}/.config/MangoHud
     state: directory
     mode: '0755'
 
 - name: "Set configuration options in MangoHud file"
   lineinfile:
-    path: /home/{{ ansible_user }}/.config/MangoHud/MangoHud.conf
+    path: /home/{{ ansible_user_id }}/.config/MangoHud/MangoHud.conf
     line: "{{ item.line }}"
     create: true
     state: present
